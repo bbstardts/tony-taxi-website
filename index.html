@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tony Taxi | Safe & Comfortable Rides</title>
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --bg-soft:#141414;
+      --bg-card:#1a1a1a;
+      --gold:#d4af37;
+      --gold-2:#e4c45a;
+      --text:#ffffff;
+      --muted:#cfcfcf;
+      --line:rgba(212,175,55,.25);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:min(1120px, 92%);
+      margin:auto;
+    }
+
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(11,11,11,.95);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:18px 0;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:1.1rem;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    .logo-badge{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:2px solid var(--gold);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--gold);
+      font-weight:700;
+      box-shadow:0 0 15px rgba(212,175,55,.12);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .nav-links a:hover{
+      color:var(--gold);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:14px 24px;
+      border-radius:999px;
+      font-weight:700;
+      transition:.25s ease;
+      border:1px solid var(--gold);
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:var(--gold);
+      color:#111;
+      box-shadow:0 0 18px rgba(212,175,55,.18);
+    }
+
+    .btn-primary:hover{
+      background:var(--gold-2);
+      transform:translateY(-2px);
+    }
+
+    .btn-outline{
+      background:transparent;
+      color:var(--text);
+    }
+
+    .btn-outline:hover{
+      background:rgba(212,175,55,.08);
+      transform:translateY(-2px);
+    }
+
+    .hero{
+      min-height:92vh;
+      display:flex;
+      align-items:center;
+      background:
+        linear-gradient(to right, rgba(11,11,11,.92), rgba(11,11,11,.64)),
+        url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      padding:80px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:36px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      color:var(--gold);
+      text-transform:uppercase;
+      font-size:.85rem;
+      letter-spacing:2px;
+      font-weight:700;
+      margin-bottom:14px;
+    }
+
+    .hero h1{
+      font-size:clamp(2.3rem, 6vw, 4.8rem);
+      line-height:1.05;
+      margin-bottom:16px;
+    }
+
+    .hero p{
+      max-width:620px;
+      color:var(--muted);
+      margin-bottom:26px;
+      font-size:1.04rem;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:24px;
+    }
+
+    .hero-points{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .hero-card{
+      background:rgba(20,20,20,.92);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:0 12px 36px rgba(0,0,0,.35);
+    }
+
+    .hero-card h3{
+      color:var(--gold);
+      margin-bottom:10px;
+      font-size:1.35rem;
+    }
+
+    .hero-card p{
+      margin-bottom:14px;
+      font-size:.97rem;
+    }
+
+    .hero-list{
+      list-style:none;
+      display:grid;
+      gap:12px;
+      margin:18px 0 24px;
+      color:var(--muted);
+    }
+
+    section{
+      padding:88px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:clamp(1.9rem,4vw,3rem);
+      margin-bottom:12px;
+    }
+
+    .section-subtitle{
+      max-width:700px;
+      margin:0 auto 48px;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    .highlights{
+      margin-top:-40px;
+      position:relative;
+      z-index:2;
+    }
+
+    .highlight-grid,
+    .services-grid,
+    .testimonial-grid,
+    .contact-grid{
+      display:grid;
+      gap:22px;
+    }
+
+    .highlight-grid{
+      grid-template-columns:repeat(4, 1fr);
+    }
+
+    .services-grid,
+    .testimonial-grid,
+    .contact-grid{
+      grid-template-columns:repeat(3, 1fr);
+    }
+
+    .card{
+      background:var(--bg-soft);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:24px;
+      transition:.25s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(212,175,55,.45);
+    }
+
+    .icon{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      background:rgba(212,175,55,.10);
+      color:var(--gold);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.35rem;
+      border:1px solid rgba(212,175,55,.22);
+    }
+
+    .card h3,
+    .card h4{
+      margin:14px 0 8px;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .about-grid,
+    .vehicle-grid,
+    .booking-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .panel{
+      background:var(--bg-card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:30px;
+    }
+
+    .about-text h2,
+    .vehicle-text h2,
+    .booking-text h2{
+      font-size:clamp(1.8rem,4vw,2.8rem);
+      margin-bottom:16px;
+    }
+
+    .about-text p,
+    .vehicle-text p,
+    .booking-text p{
+      color:var(--muted);
+      margin-bottom:16px;
+    }
+
+    .list{
+      list-style:none;
+      display:grid;
+      gap:14px;
+      color:var(--muted);
+      margin-top:18px;
+    }
+
+    .list li{
+      padding-left:18px;
+      position:relative;
+    }
+
+    .list li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      color:var(--gold);
+      font-size:1.2rem;
+      line-height:1;
+    }
+
+    .image-box{
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:var(--bg-soft);
+    }
+
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .booking-box{
+      display:grid;
+      gap:16px;
+    }
+
+    .booking-note{
+      padding:18px;
+      border-radius:18px;
+      background:rgba(212,175,55,.08);
+      border:1px solid rgba(212,175,55,.20);
+      color:var(--muted);
+    }
+
+    .testimonial{
+      position:relative;
+    }
+
+    .stars{
+      color:var(--gold);
+      margin-bottom:12px;
+      font-size:1rem;
+      letter-spacing:2px;
+    }
+
+    .testimonial strong{
+      display:block;
+      margin-top:14px;
+      color:var(--gold);
+    }
+
+    .contact-item{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+
+    .contact-item + .contact-item{
+      margin-top:16px;
+    }
+
+    .contact-item .small-icon{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:rgba(212,175,55,.10);
+      color:var(--gold);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(212,175,55,.22);
+      font-size:1rem;
+      flex-shrink:0;
+    }
+
+    footer{
+      border-top:1px solid var(--line);
+      padding:28px 0;
+      background:#090909;
+    }
+
+    .footer-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a:hover{
+      color:var(--gold);
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .about-grid,
+      .vehicle-grid,
+      .booking-grid,
+      .highlight-grid,
+      .services-grid,
+      .testimonial-grid,
+      .contact-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .hero{
+        min-height:auto;
+      }
+
+      .nav-links{
+        display:none;
+      }
+    }
+
+    @media (max-width: 680px){
+      .hero-grid,
+      .about-grid,
+      .vehicle-grid,
+      .booking-grid,
+      .highlight-grid,
+      .services-grid,
+      .testimonial-grid,
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding:70px 0 60px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .footer-wrap{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a href="#home" class="logo">
+        <img src="image/logo.jpg" alt="Tony Taxi Logo" style="height:45px;">
+          
+ 
+        <span>Tony Taxi</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#booking">Booking</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="#booking" class="btn btn-primary">Book Now</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">24/7 Travel & Transportation</span>
+        <h1>Comfortable, Safe & Reliable Taxi Service</h1>
+        <p>
+          Travel with confidence using Tony Taxi. We offer airport transfers,
+          city rides, and long distance trips with comfort, punctuality,
+          and professional service.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://wa.me/558581454833" class="btn btn-primary">Book via WhatsApp</a>
+          <a href="tel:+558581454833" class="btn btn-outline">Call Now</a>
+        </div>
+
+        <div class="hero-points">
+          <span>24/7 Availability</span>
+          <span>Safe Rides</span>
+          <span>Comfortable Travel</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Quick Service Overview</h3>
+        <p>
+          A premium taxi experience focused on comfort, safety and trusted transportation.
+        </p>
+
+        <ul class="hero-list">
+          <li>Airport pickup and drop-off</li>
+          <li>City transportation anytime</li>
+          <li>Long distance intercity travel</li>
+          <li>Comfortable and secure rides</li>
+        </ul>
+
+        <a href="#services" class="btn btn-outline" style="width:100%;">View Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <div class="container highlights">
+    <div class="highlight-grid">
+      <div class="card">
+        <div class="icon">⏰</div>
+        <h4>24/7 Service</h4>
+        <p class="muted">Available day and night for your travel needs.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🛡️</div>
+        <h4>Safe & Reliable</h4>
+        <p class="muted">Focused on secure and dependable transportation.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🚖</div>
+        <h4>Comfortable Cars</h4>
+        <p class="muted">Enjoy a clean, smooth and comfortable ride.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📍</div>
+        <h4>Fast Pickup</h4>
+        <p class="muted">Quick response for pickups and scheduled trips.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">
+        We provide trusted travel solutions for airport transport,
+        local rides and long distance trips.
+      </p>
+
+      <div class="services-grid">
+        <div class="card">
+          <div class="icon">✈️</div>
+          <h3>Airport Transfer</h3>
+          <p class="muted">
+            Reliable pickup and drop-off service for travelers who need comfort,
+            punctuality and peace of mind.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🏙️</div>
+          <h3>City Rides</h3>
+          <p class="muted">
+            Easy and convenient transportation around the city for work,
+            errands, meetings and daily movement.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🛣️</div>
+          <h3>Long Distance Trips</h3>
+          <p class="muted">
+            Comfortable travel between cities with a focus on safety,
+            convenience and stress-free transportation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-text panel">
+        <h2>About Tony Taxi</h2>
+        <p>
+          Tony Taxi is a transportation service dedicated to providing safe,
+          comfortable and dependable travel for every customer.
+        </p>
+        <p>
+          Whether you need an airport transfer, a local ride or a long distance trip,
+          our goal is to make every journey smooth and convenient.
+        </p>
+
+        <ul class="list">
+          <li>Professional and customer-focused service</li>
+          <li>Comfortable trips with reliable scheduling</li>
+          <li>Available for both local and longer journeys</li>
+        </ul>
+      </div>
+
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80" alt="Luxury car for taxi service">
+      </div>
+    </div>
+  </section>
+
+  <!-- Vehicle / Experience -->
+  <section>
+    <div class="container vehicle-grid">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80" alt="Comfortable taxi ride">
+      </div>
+
+      <div class="vehicle-text panel">
+        <h2>Travel With Comfort & Confidence</h2>
+        <p>
+          We focus on creating a smooth transport experience with clean vehicles,
+          trusted service and a strong commitment to customer satisfaction.
+        </p>
+
+        <ul class="list">
+          <li>Clean and comfortable vehicle experience</li>
+          <li>Reliable service for individual and family travel</li>
+          <li>Designed for convenience, safety and peace of mind</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section id="booking">
+    <div class="container booking-grid">
+      <div class="booking-text panel">
+        <h2>Book Your Ride Today</h2>
+        <p>
+          Need a fast and safe ride? Contact Tony Taxi directly for airport transfers,
+          city transportation and long distance travel.
+        </p>
+
+        <div class="booking-box">
+          <a href="https://wa.link/qt5ljp" class="btn btn-primary">Chat on WhatsApp</a>
+          <a href="tel:+558581454833" class="btn btn-outline">Call +55 85 8145-4833</a>
+          <div class="booking-note">
+            Fast response. Easy booking. Comfortable transportation service available when you need it.
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3 style="color: var(--gold); margin-bottom: 14px;">Why Book With Us?</h3>
+        <ul class="list">
+          <li>Simple and direct booking process</li>
+          <li>24-hour service availability</li>
+          <li>Safe, comfortable and convenient rides</li>
+          <li>Professional service for different travel needs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">What Clients Say</h2>
+      <p class="section-subtitle">
+        Sample testimonials for this demo preview.
+      </p>
+
+      <div class="testimonial-grid">
+        <div class="card testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="muted">
+            Very comfortable ride and professional service. Everything was smooth and on time.
+          </p>
+          <strong>Maria S.</strong>
+        </div>
+
+        <div class="card testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="muted">
+            Great transport experience. Easy communication and reliable pickup.
+          </p>
+          <strong>Carlos T.</strong>
+        </div>
+
+        <div class="card testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="muted">
+            Safe, fast and dependable. I would recommend this service for airport travel.
+          </p>
+          <strong>Fernanda R.</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Information</h2>
+      <p class="section-subtitle">
+        Get in touch for bookings, ride inquiries and travel support.
+      </p>
+
+      <div class="contact-grid">
+        <div class="card">
+          <div class="contact-item">
+            <div class="small-icon">📞</div>
+            <div>
+              <h3>Phone</h3>
+              <p class="muted">+55 85 8145-4833</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="contact-item">
+            <div class="small-icon">💬</div>
+            <div>
+              <h3>WhatsApp</h3>
+              <p class="muted">Message us directly for bookings and questions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="contact-item">
+            <div class="small-icon">📍</div>
+            <div>
+              <h3>Location</h3>
+              <p class="muted">Mossoró, RN, Brazil</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;" class="panel">
+        <div class="contact-item">
+          <div class="small-icon">🌐</div>
+          <div>
+            <h3>Social Presence</h3>
+            <p class="muted">Facebook: Tony Douglas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-wrap">
+      <p>© 2026 Tony Taxi. All rights reserved.</p>
+
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <p>Demo by Bbstar</p>
+    </div>
+  </footer>
+
+</body>
+</html>
